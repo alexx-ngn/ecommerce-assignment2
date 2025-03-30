@@ -37,7 +37,11 @@ class Employee {
     }
 
     public function setTitle($title) {
-        $this->title = $title;
+        // Validate that title contains only alphabetical characters and spaces
+        if (!preg_match('/^[a-zA-Z\s]+$/', $title)) {
+            throw new \InvalidArgumentException("Title must contain only alphabetical characters and spaces.");
+        }
+        $this->title = htmlspecialchars(stripslashes(trim($title)));
     }
 
     public function __toString() {
