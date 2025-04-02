@@ -8,13 +8,16 @@ class Employee {
     private $title;
 
     public function __construct($firstName, $departmentID, $title, $id = null) {
-        $this->firstName = $firstName;
-        $this->departmentID = $departmentID;
-        $this->title = $title;
-        $this->id = $id;
+        $this->setFirstName($firstName);
+        $this->setDepartmentID($departmentID);
+        $this->setTitle($title);
+        $this->setId($id);
     }
     public function getId() {
         return $this->id;
+    }
+    public function setId($id) {
+        $this->id = $id;
     }
     public function getFirstName() {
         return $this->firstName;
