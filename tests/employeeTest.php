@@ -83,5 +83,18 @@ final class employeeTest extends TestCase
         $employee = new Employee("John Doe", 1, "Software Engineer");
         $employee->setTitle("   ");
     }
+
+    public function testNullTitle()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $employee = new Employee("John Doe", 1, "Software Engineer");
+        $employee->setTitle(null);
+    }
+    public function testTitleWithHTML()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $employee = new Employee("John Doe", 1, "Software Engineer");
+        $employee->setTitle("<b>Manager</b>");
+    }
 }
 ?>
