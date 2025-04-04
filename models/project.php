@@ -4,8 +4,6 @@ class Project {
     private $id;
     private $name;
     private $budget;
-
-    
     public function __construct($id, $name, $budget) {
         $this->id = $id;
         $this->name = $name;
