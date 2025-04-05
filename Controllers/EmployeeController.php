@@ -14,12 +14,19 @@ class EmployeeController
         $this->service = new EmployeeService();
     }
 
+    private function validateInput($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
     public function handleCreate($request)
     {
         try {
-            $firstName = htmlspecialchars(trim($request['firstname'] ?? ''));
-            $departmentID = htmlspecialchars(trim($request['departmentID'] ?? ''));
-            $title = htmlspecialchars(trim($request['title'] ?? ''));
+            $firstName = $this->validateInput($request['firstname'] ?? '');
+            $departmentID = $this->validateInput($request['departmentID'] ?? '');
+            $title = $this->validateInput($request['title'] ?? '');
 
             $employee = new Employee($firstName, $departmentID, $title);
 
