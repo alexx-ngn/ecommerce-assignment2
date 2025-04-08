@@ -9,6 +9,14 @@ class Department {
         $this->name = $name;
     }
 
+    public function validate() {
+        $errors = [];
+        if (empty(trim($this->name))) { 
+            $errors[] = "name is required.";
+        }
+        return $errors;
+    }
+
     public function getID() {
         return $this->id;
     }
