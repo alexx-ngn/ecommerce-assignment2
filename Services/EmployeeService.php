@@ -9,6 +9,21 @@ class EmployeeService
 {
     public function createEmployee($firstname, $departmentID, $title): Employee
     {
+        // Validate firstname
+        if (empty($firstname)) {
+            throw new \InvalidArgumentException("First name cannot be empty.");
+        }
+        
+        // Validate departmentID
+        if (empty($departmentID)) {
+            throw new \InvalidArgumentException("Department ID cannot be empty.");
+        }
+        
+        // Validate that departmentID is numeric
+        if (!is_numeric($departmentID)) {
+            throw new \InvalidArgumentException("Department ID must be a number.");
+        }
+        
         // First trim the title to remove leading and trailing whitespace
         $trimmedTitle = trim($title);
 

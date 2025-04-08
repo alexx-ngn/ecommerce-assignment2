@@ -75,4 +75,36 @@ final class EmployeeServiceTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->service->createEmployee("John Doe", 1, "<b>Manager</b>");
     }
+
+    // New tests for firstname validation
+    public function testEmptyFirstName()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->service->createEmployee("", 1, "Software Engineer");
+    }
+
+    public function testNullFirstName()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->service->createEmployee(null, 1, "Software Engineer");
+    }
+
+    // New tests for departmentID validation
+    public function testEmptyDepartmentID()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->service->createEmployee("John Doe", "", "Software Engineer");
+    }
+
+    public function testNullDepartmentID()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->service->createEmployee("John Doe", null, "Software Engineer");
+    }
+
+    public function testNonNumericDepartmentID()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->service->createEmployee("John Doe", "abc", "Software Engineer");
+    }
 }

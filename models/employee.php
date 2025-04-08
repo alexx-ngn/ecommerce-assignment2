@@ -13,24 +13,6 @@ class Employee
         $this->departmentID = $departmentID;
         $this->title = $title;
     }
-
-    public function validate() {
-        $errors = [];
-
-        if (empty($this->firstName)) {
-            $errors[] = "First name is required.";
-        }
-
-        if (empty($this->departmentID)) {
-            $errors[] = "Department ID is required.";
-        }
-
-        if (empty($this->title)) {
-            $errors[] = "Title is required.";
-        }
-
-        return $errors;
-    }
     
     public function getFirstName()
     {
