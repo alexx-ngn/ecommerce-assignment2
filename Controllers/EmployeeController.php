@@ -17,15 +17,6 @@ class EmployeeController
         $this->service = new EmployeeService();
     }
 
-    private function validateInput($data) {
-        if ($data === null) {
-            return '';
-        }
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
 
     public function handleCreate($request)
     {
@@ -37,9 +28,9 @@ class EmployeeController
 
         try {
             // Extract and sanitize input data
-            $firstName = $this->validateInput($request['firstname'] ?? '');
-            $departmentID = $this->validateInput($request['departmentID'] ?? '');
-            $title = $this->validateInput($request['title'] ?? '');
+            $firstName = $this->service->validateInput($request['firstname'] ?? '');
+            $departmentID = $this->service->validateInput($request['departmentID'] ?? '');
+            $title = $this->service->validateInput($request['title'] ?? '');
 
             // Basic validation in controller (HTTP/UI context)
             if (empty($firstName)) {

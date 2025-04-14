@@ -13,6 +13,16 @@ final class EmployeeServiceTest extends TestCase
         $this->service = new EmployeeService();
     }
 
+    private function validateInput($data) {
+        if ($data === null) {
+            return '';
+        }
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
     public function testEmployeeCreation()
     {
         $employee = $this->service->createEmployee("John Doe", 1, "Software Engineer");
